@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameLayer.h"
 #include "MenuLayer.h"
+#include "HelpLayer.h"
 
 Game::Game() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -15,12 +16,13 @@ Game::Game() {
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
 	menuLayer = new MenuLayer(this);
+	helpLayer = new HelpLayer(this);
 	gameLayer = new GameLayer(this);
 	layer = menuLayer; // Pantalla INICIAL MENULAYER
 
 	// fuentes
 	TTF_Init();
-	font = TTF_OpenFont("res/sans.ttf", 24);
+	font = TTF_OpenFont("res/sans.ttf", 16);
 
 	loopActive = true; // bucle activo
 	loop();

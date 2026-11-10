@@ -18,5 +18,8 @@ public:
 	SDL_GameController* gamePad; // Mando
 
 	Background* background;
-	Actor* button;
+	//Actor* button;
+	Actor* buttonPlay;
+	Actor* buttonHelp;
+	bool controlHelp = false;
 };

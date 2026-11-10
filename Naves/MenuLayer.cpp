@@ -7,16 +7,30 @@ MenuLayer::MenuLayer(Game* game)
 }
 
 void MenuLayer::init() {
-	// Fondo normal, sin velocidad
-	background = new Background("res/menu_fondo.png", WIDTH * 0.5, HEIGHT * 0.5, game);
-	button = new Actor("res/boton_jugar.png", WIDTH * 0.5, HEIGHT * 0.7, 232, 72, game);
+	background = new Background(
+		"res/recursos/menu.jpg",
+		WIDTH * 0.5, HEIGHT * 0.5, game
+	);
+
+	buttonPlay = new Actor(
+		"res/recursos/BotonJugar.jpg",
+		WIDTH * 0.5, HEIGHT * 0.60,
+		160, 50, game
+	);
+
+	buttonHelp = new Actor(
+		"res/recursos/botonAyuda.jpg",
+		WIDTH * 0.5, HEIGHT * 0.75,
+		160, 50, game
+	);
 }
 
 void MenuLayer::draw() {
 	background->draw();
-	button->draw();
+	buttonPlay->draw();
+	buttonHelp->draw();
 
-	SDL_RenderPresent(game->renderer); // Renderiza NO PUEDE FALTAR
+	SDL_RenderPresent(game->renderer);
 }
 
 void MenuLayer::processControls() {
@@ -53,6 +67,10 @@ void MenuLayer::processControls() {
 		if (game->input == game->inputMouse) {
 			mouseToControls(event);
 		}
+		if (controlHelp) {
+			game->layer = game->helpLayer;
+			controlHelp = false;
+		}
 	}
 
 	//procesar controles, solo tiene uno
@@ -82,14 +100,18 @@ void MenuLayer::keysToControls(SDL_Event event) {
 }
 
 void MenuLayer::mouseToControls(SDL_Event event) {
-	// Modificación de coordenadas por posible escalado
-	float motionX = event.motion.x / game->scaleLower;
-	float motionY = event.motion.y / game->scaleLower;
 
-	// Cada vez que hacen click
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
-		if (button->containsPoint(motionX, motionY)) {
+
+		float motionX = event.button.x / game->scaleLower;
+		float motionY = event.button.y / game->scaleLower;
+
+		if (buttonPlay->containsPoint(motionX, motionY)) {
 			controlContinue = true;
+		}
+
+		if (buttonHelp->containsPoint(motionX, motionY)) {
+			controlHelp = true;
 		}
 	}
 }

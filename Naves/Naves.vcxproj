@@ -139,6 +139,7 @@
     <ClCompile Include="ExtraLife.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLayer.cpp" />
+    <ClCompile Include="HelpLayer.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="ExtraLife.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLayer.h" />
+    <ClInclude Include="HelpLayer.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="MenuLayer.h" />

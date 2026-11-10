@@ -35,7 +35,7 @@ public:
 
 	Layer* layer;
 	Layer* menuLayer;
-
+	Layer* helpLayer;
 	Layer* gameLayer;
 
 	int const stateMoving = 1;
